@@ -22,7 +22,7 @@
  * Source URLs were verified on 19 October 2026; a few are secondary copies (see flag).
  */
 window.DATA = {
-  lastCheckedAt: "2026-10-19",
+  lastCheckedAt: "2026-10-21",
   coverageStart: "2020-01-01",
 
   categories: [
@@ -645,6 +645,79 @@ window.DATA = {
     },
 
     {
+      id: "swissmedic", name: "Swissmedic — Swiss Agency for Therapeutic Products", short: "Swissmedic", logoText: "SMC", domain: "swissmedic.ch",
+      category: "regulator",
+      intro: "Switzerland's federal authority for medicinal products, medical devices and clinical trials. Its GCP/GVP Inspectorate inspects sponsors, CROs and trial sites (9 GCP inspections in 2020, rising to 83 in 2025) and published its first GCP findings report in Nov 2025.",
+      url: "https://www.swissmedic.ch/",
+      sources: [
+        { id: "swissmedic-gcp-report-2022-2024", title: "Swissmedic GCP Inspections Report 2022–2024", url: "https://www.swissmedic.ch/dam/swissmedic/en/dokumente/bewilligungen/klv/gcp-inspektionen-smc-2022-2024.pdf.download.pdf/EN_GCP-Jahresbericht-final.pdf", type: "GCP inspection findings report", publishedAt: "2025-11-06", period: "2022–2024", scope: "114 inspections (sites and sponsor/CRO systems) covering 139 medicinal-product trials; excludes medical devices and ATMPs",
+          summary: "Swissmedic's first GCP report: finding grades, academic vs commercial sponsor comparison, administrative measures and the most frequent critical/major categories with typical examples. Academic sponsors had far more critical findings (58.3% of 2024 inspections vs 16.7% for commercial sponsors).",
+          findings: [
+            { domain: "co", cat: "co-consent", sev: "critical", text: "One commercially sponsored trial had 4 critical consent non-compliances: the approved ICF reached the site late, re-consent was late, a patient was not told about urgent safety measures, and a patient was consented with an outdated ICF.", ref: "ICH E6(R2) 4.8" },
+            { domain: "co", cat: "co-qms", sev: "trend", text: "Findings by grade: 2022 – 6 critical (2.3%), 115 major, 135 minor; 2023 – 24 critical (8.2%), 137 major, 132 minor; 2024 – 27 critical (7.7%), 175 major, 148 minor.", ref: "" },
+            { domain: "co", cat: "co-sponsor", sev: "trend", text: "Inspections with at least one critical finding: academic sponsors 33.3% (2022), 33.3% (2023), 58.3% (2024); commercial sponsors 5.3%, 30.8% and 16.7%.", ref: "" },
+            { domain: "co", cat: "co-sponsor", sev: "trend", text: "Administrative measures (e.g. interruption of recruitment) rose from 1 in 2022 to 7 in 2023, then 3 in 2024.", ref: "ClinO / TPA" },
+            { domain: "co", cat: "co-sponsor", sev: "trend", text: "In some site inspections, critical and major findings fell under the sponsor's responsibility rather than the site's.", ref: "ICH E6(R2) 5.1" },
+            { domain: "co", cat: "co-safety", sev: "trend", text: "Critical/major findings on subject safety rose from 2 (2022) to 9 (2023) to 17 (2024); critical safety findings in 2024 were similar for academic (6) and commercial (7) sponsors.", ref: "ICH E6(R2) 5.16–5.17" },
+            { domain: "co", cat: "co-oversight", sev: "trend", text: "Critical/major monitoring findings nearly doubled (13, 13, 24 in 2022–2024); Swissmedic links this to weak sponsor oversight of outsourced CRO monitoring.", ref: "ICH E6(R2) 5.2, 5.18" },
+            { domain: "co", cat: "co-oversight", sev: "trend", text: "Critical/major organisation and personnel findings: 16, 15 and 23 (2022–2024).", ref: "ICH E6(R2) 4.1–4.2" },
+            { domain: "co", cat: "co-qms", sev: "trend", text: "Critical/major qualification/training findings 16, 15, 15; SOP findings 18, 13, 15; document control findings 4, 10, 9 (2022–2024).", ref: "ICH E6(R2) 5.1" },
+            { domain: "co", cat: "co-protocol", sev: "trend", text: "Critical/major protocol/CRF design findings 10, 11, 12 and other protocol compliance findings 8, 8, 11 (2022–2024).", ref: "ICH E6(R2) 4.5" },
+            { domain: "co", cat: "co-tmf", sev: "trend", text: "Critical/major essential-document findings: 19, 18 and 15 (2022–2024).", ref: "ICH E6(R2) 8" },
+            { domain: "co", cat: "co-safety", sev: "trend", text: "Phase IV trials had the highest share of inspections with a critical finding (80% in 2024), then Phase II (50%) and first-in-human (33.3%).", ref: "" },
+            { domain: "dm", cat: "dm-source", sev: "trend", text: "Source documentation was the most frequent critical/major category in 2024 (17, 18, 26 in 2022–2024), including 4 critical findings at commercial sponsors in 2024.", ref: "ICH E6(R2) 4.9" },
+            { domain: "dm", cat: "dm-crf", sev: "trend", text: "Critical/major findings on CRF or patient-diary reporting: 14, 11 and 17 (2022–2024).", ref: "ICH E6(R2) 4.9" },
+            { domain: "dm", cat: "dm-csv", sev: "trend", text: "Computer system validation produced 3 critical findings at academic sponsors in 2024; academic trials had more CSV findings than commercial trials.", ref: "ICH E6(R2) 5.5.3" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "The sponsor did not perform an ongoing safety evaluation or define its key aspects (frequency of aggregate review, responsibilities) before the trial started.", ref: "ICH E6(R2) 5.16" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "A SUSAR was not reported to Swissmedic.", ref: "ClinO Art. 41" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "The sponsor had no correct SAE evaluation process, and SAE reporting was deficient.", ref: "ClinO Art. 40; ICH E6(R2) 5.17" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "Investigators acknowledged Dear Investigator Letters and safety reports late.", ref: "ICH E6(R2) 5.16.2" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "Facilities and equipment were inadequate for first-in-human trials.", ref: "ICH E6(R2) 4.2" },
+            { domain: "co", cat: "co-safety", sev: "major", text: "SAE source data were missing, and the investigator's safety assessment was not documented.", ref: "ICH E6(R2) 4.11" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "Sponsor oversight of Independent Data Monitoring Committee activities was insufficient.", ref: "ICH E6(R2) 5.5.2" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "Several sponsor responsibilities were not defined in writing, and the split of duties between sponsor representative and PI was deficient.", ref: "ICH E6(R2) 5.2, 5.7" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "Monitoring: the monitoring plan was not followed, and SDV was not performed on original source documents.", ref: "ICH E6(R2) 5.18.4, 5.18.7" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "Monitoring: site initiation was incomplete, with no risk assessment to set monitoring frequency, and site activation processes were deficient.", ref: "ICH E6(R2) 5.18.3" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "Monitoring: protocol deviations were reviewed late; monitor training and handovers were undocumented; QC of monitoring was insufficient.", ref: "ICH E6(R2) 5.18" },
+            { domain: "co", cat: "co-oversight", sev: "major", text: "The signature/delegation log was deficient, with insufficient evidence of the investigator's medical oversight and inadequate PI back-up cover.", ref: "ICH E6(R2) 4.1.5, 4.2.5" },
+            { domain: "co", cat: "co-oversight", sev: "major", text: "Safety-letter review was delegated to an unqualified team member, and nurses performed trial tasks without authorisation.", ref: "ICH E6(R2) 4.2.4–4.2.5" },
+            { domain: "co", cat: "co-qms", sev: "major", text: "Training of site personnel, and its documentation, was deficient.", ref: "ICH E6(R2) 4.2.4" },
+            { domain: "co", cat: "co-ip", sev: "major", text: "Source documentation of IMP handling and administration was inadequate.", ref: "ICH E6(R2) 4.6" },
+            { domain: "co", cat: "co-consent", sev: "major", text: "Documentation of the informed consent process was insufficient.", ref: "ICH E6(R2) 4.8" },
+            { domain: "co", cat: "co-protocol", sev: "major", text: "Protocol deviations were insufficiently documented in notes to file.", ref: "ICH E6(R2) 4.5.3" },
+            { domain: "dm", cat: "dm-recon", sev: "major", text: "The clinical and safety databases were not reconciled, and discrepancies between them were found.", ref: "ICH E6(R2) 5.5" },
+            { domain: "dm", cat: "dm-source", sev: "major", text: "Source data did not follow ALCOA+ principles, and certified copies were generated incorrectly.", ref: "ICH E6(R2) 4.9.0" },
+            { domain: "dm", cat: "dm-source", sev: "major", text: "Source documents were poorly defined, their transport was undocumented, and the PI's access to all source documents was not ensured.", ref: "ICH E6(R2) 4.9" },
+            { domain: "dm", cat: "dm-crf", sev: "major", text: "Multiple discrepancies within source data and between source data and the eCRF.", ref: "ICH E6(R2) 4.9.2" }
+          ] },
+        { id: "swissmedic-gcp-report-2022-2024-news", title: "Swissmedic news: Annual report on inspections of clinical trials as part of GCP", url: "https://www.swissmedic.ch/swissmedic/en/home/news/mitteilungen/jahresbericht-inspektionen-klinische-versuche-gcp.html", type: "Press release", publishedAt: "2025-11-06", period: "2022–2024", scope: "Summary of 114 GCP inspections of 139 medicinal-product trials",
+          summary: "Announces the 2022–2024 GCP report and lists the most frequent deficiencies. The sponsor must submit a CAPA plan within four weeks of an inspection.",
+          findings: [
+            { domain: "co", cat: "co-safety", sev: "trend", text: "Failure to ensure subject safety was among the most frequent deficiencies.", ref: "" },
+            { domain: "dm", cat: "dm-source", sev: "trend", text: "Incomplete or deficient source documentation (missing or incorrect data) was among the most frequent deficiencies.", ref: "" },
+            { domain: "co", cat: "co-qms", sev: "trend", text: "Weak organisational structures and QMS (missing or deficient written instructions, inadequate training) were among the most frequent deficiencies.", ref: "" }
+          ] },
+        { id: "swissmedic-annual-report-2025", title: "Swissmedic Annual Report 2025 (GCP inspections section)", url: "https://www.swissmedic.ch/dam/swissmedic/en/dokumente/stab/gesch%C3%A4ftsbericht/geschaeftsbericht2025.pdf.download.pdf/Swissmedic_GB_2025_EN_WEB.pdf", type: "Annual report", publishedAt: "2026-06-12", period: "2025", scope: "83 GCP inspections (82 medicinal-product/ATMP trials) plus 6 medical-device trial inspections",
+          summary: "Inspection volume rose to 83 (66 in 2024). Three for-cause inspections were held, and severe non-compliances led to enforcement action. No findings breakdown is given.",
+          findings: [
+            { domain: "co", cat: "co-sponsor", sev: "trend", text: "Severe non-compliances found at review or inspection led Swissmedic to withdraw one trial authorisation and interrupt recruitment in two trials.", ref: "ClinO / TPA" }
+          ] },
+        { id: "ctu-bern-swissmedic-inspection-lecture-2023", title: "CTU Bern lecture: Inspections – what do I need to know? (Swissmedic GCP inspection examples)", url: "https://dcr.unibe.ch/unibe/portal/fak_medizin/micro_ctu/content/e182527/e312629/e549329/e549331/files1404271/DCR-CTULecture_Inspections_20230524_eng.pdf", type: "Presentation (academic CTU)", publishedAt: "2023-05-24", period: "Not stated", scope: "Anonymised example findings from Swissmedic GCP inspections in academic sponsor-investigator trials", flag: "Secondary source", flagNote: "Not a Swissmedic publication; examples are anonymised and not tied to a specific inspection or date.",
+          summary: "A CTU Bern quality-management lecture listing anonymised critical, major and minor examples from Swissmedic GCP inspections.",
+          findings: [
+            { domain: "co", cat: "co-consent", sev: "critical", text: "Outdated ICFs were used, an ICF was in a language the patient did not understand, updated information was given 3 months late, and only the signature page was on file.", ref: "ICH E6(R2) 4.8" },
+            { domain: "co", cat: "co-ethics", sev: "critical", text: "Documents not approved by the ethics committee and/or Swissmedic were used repeatedly.", ref: "ClinO; ICH E6(R2) 4.4" },
+            { domain: "co", cat: "co-protocol", sev: "critical", text: "Multiple protocol violations were not documented.", ref: "ICH E6(R2) 4.5" },
+            { domain: "co", cat: "co-sponsor", sev: "critical", text: "The sponsor-investigator had no QMS: no oversight of vendors or sites, no training concept, and no processes for essential documents, deviations or SOPs.", ref: "ICH E6(R2) 5.0–5.2" },
+            { domain: "dm", cat: "dm-crf", sev: "major", text: "AE grading and outcome differed between source data, site AE logs and the eCRF.", ref: "ICH E6(R2) 4.9.2" },
+            { domain: "co", cat: "co-oversight", sev: "major", text: "Obtaining consent and assessing AEs/SAEs were inappropriately delegated to study coordinators or nurses.", ref: "ICH E6(R2) 4.2.5" },
+            { domain: "dm", cat: "dm-source", sev: "major", text: "Source data locations were not defined, or not in enough detail, at trial start and during the trial.", ref: "ICH E6(R2) 8.3.13" },
+            { domain: "co", cat: "co-ip", sev: "minor", text: "No evidence that the IMP cold chain was maintained between delivery to the site and refrigerated storage.", ref: "ICH E6(R2) 4.6" }
+          ] }
+      ]
+    },
+
+    {
       id: "tga", name: "TGA — Australia Therapeutic Goods Administration", short: "TGA", logoText: "TGA", domain: "tga.gov.au",
       category: "regulator",
       intro: "TGA's GCP Inspection Program inspects Australian trial sites, commercial and investigator-initiated, and publishes de-identified metrics.",
@@ -798,6 +871,78 @@ window.DATA = {
           summary: "A single-observation 483, later classified VAI.",
           findings: [
             { domain: "co", cat: "co-ethics", sev: "major", text: "FDA was not notified that a PI's participation had been terminated for cause.", ref: "21 CFR 312.56(b)" }
+          ] },
+        { id: "ema-epar-enspryng-gcp-inspection-2021", title: "Enspryng (satralizumab) EPAR — CHMP-requested GCP inspections of pivotal NMOSD trials (SAkuraSky / SAkuraStar)", url: "https://www.ema.europa.eu/en/documents/assessment-report/enspryng-epar-public-assessment-report_en.pdf", type: "EMA EPAR (CHMP-requested GCP inspection)", publishedAt: "2021", period: "Inspections Nov 2019 – Aug 2020; outcome Dec 2020", scope: "Two investigator sites (Spain, Poland), the sponsor in Japan (Chugai) and a US CRO",
+          summary: "EMA inspections found 10 critical and 19 major findings, centred on blinding separation of investigators and sponsor review of relapse-adjudication packages. Data from at least 33 patients (28%) could have been affected.",
+          findings: [
+            { domain: "co", cat: "co-ip", sev: "critical", text: "Documentation of the separation between treating and blinded examining investigators was deficient, so blinding separation could not be confirmed (6 of 86 issues unresolved).", ref: "ICH E6 (blinding)" },
+            { domain: "co", cat: "co-sponsor", sev: "critical", text: "The sponsor/CRO reviewed and queried relapse-adjudication packages, and relapse forms were changed, before they reached the adjudication committee; one potentially leading query was identified.", ref: "ICH E6 5.1, 5.5" },
+            { domain: "dm", cat: "dm-source", sev: "critical", text: "Missing and incomplete documents, documents filed outside the eTMF, non-ALCOA form changes and missing or wrong notes-to-file.", ref: "ICH E6 4.9, 8" },
+            { domain: "dm", cat: "dm-integrity", sev: "critical", text: "Queries, answers and changes to FSS/EDSS scores were not recorded systematically, so the chronology of events could not be reconstructed.", ref: "ICH E6 4.9.0" },
+            { domain: "dm", cat: "dm-audit", sev: "critical", text: "Numerous accesses to the electronic relapse-assessment system (VCAS) were noted within the critical sponsor-review finding.", ref: "ICH E6 5.5.3" },
+            { domain: "dm", cat: "dm-lock", sev: "major", text: "A previous sponsor used fibrinogen data twice (2015, 2017) to infer treatment assignment, temporally linked to protocol amendments; CHMP raised a major objection.", ref: "ICH E9; ICH E6 5.5" }
+          ] },
+        { id: "ema-epar-vabysmo-triggered-gcp-inspection-2022", title: "Vabysmo (faricimab) EPAR — triggered GCP inspection of Roche/Genentech and a Slovak site", url: "https://www.ema.europa.eu/en/documents/assessment-report/vabysmo-epar-public-assessment-report_en.pdf", type: "EMA EPAR (triggered GCP inspection)", publishedAt: "2022", period: "MAA review 2021–2022", scope: "Sponsor site Roche/Genentech USA (remote) and one investigator site in Slovakia", flagNote: "The EPAR does not describe the topics of the inspection findings.",
+          summary: "GCP breaches self-reported by Roche triggered an inspection: 1 critical, 15 major and 8 minor findings at the sponsor and 5 major at the Slovak site. Inspectors still recommended accepting the data.",
+          findings: [
+            { domain: "co", cat: "co-sponsor", sev: "critical", text: "Inspection of the Roche/Genentech sponsor site found 1 critical, 15 major and 8 minor findings (topics not published).", ref: "ICH E6" },
+            { domain: "co", cat: "co-qms", sev: "critical", text: "Roche's own audits found critical GCP non-compliance at one Phase II site; CAPA was implemented.", ref: "ICH E6 5.19" },
+            { domain: "dm", cat: "dm-lock", sev: "major", text: "Sponsor-reported breach: patients were possibly unmasked after an internal software update to the safety database.", ref: "ICH E6 5.5; ICH E9" },
+            { domain: "co", cat: "co-consent", sev: "major", text: "Optional plasma or aqueous-humour samples were taken from 235 patients without consent or after withdrawal; the analyses were removed.", ref: "ICH E6 4.8" },
+            { domain: "co", cat: "co-oversight", sev: "major", text: "Inspection of the Slovak investigator site found 5 major and 8 minor findings (topics not published).", ref: "ICH E6 4" }
+          ] },
+        { id: "ema-epar-lunsumio-sponsor-audit-2022", title: "Lunsumio (mosunetuzumab) EPAR — Roche QA audit critical finding in Study GO29781", url: "https://www.ema.europa.eu/en/documents/assessment-report/lunsumio-epar-public-assessment-report_en.pdf", type: "EMA EPAR (sponsor audit disclosed)", publishedAt: "2022", period: "GO29781 conduct", scope: "Roche Clinical Quality Assurance audits of Study GO29781", flag: "Sponsor internal audit", flagNote: "Roche's own audit result as reported in the EPAR, not a regulatory inspection.",
+          summary: "Roche's audit found that patients were not told about new tocilizumab liver-toxicity risks and the master ICF went unrevised for six months.",
+          findings: [
+            { domain: "co", cat: "co-consent", sev: "critical", text: "The master ICF was not updated with new tocilizumab hepatotoxicity risks for six months, until the next protocol amendment.", ref: "ICH E6 4.8.2" },
+            { domain: "co", cat: "co-sponsor", sev: "critical", text: "Monitoring did not ensure subjects were verbally told about the Dear Investigator Letter safety risks at their next visit, as the communication plan required.", ref: "ICH E6 5.18" }
+          ] },
+        { id: "ema-epar-xofluza-site-noncompliance-2021", title: "Xofluza (baloxavir marboxil) EPAR — GCP-noncompliant sites closed in pivotal trials", url: "https://www.ema.europa.eu/en/documents/assessment-report/xofluza-epar-public-assessment-report_en.pdf", type: "EMA EPAR (sponsor site audits disclosed)", publishedAt: "2021", period: "Pivotal trial conduct before 2020", scope: "Investigator sites in Shionogi-sponsored pivotal trials supporting Roche's EU application", flag: "Pre-2020 data", flagNote: "Roche is the EU authorisation holder; Shionogi sponsored and audited the trials.",
+          summary: "Sponsor audits found critical and major deviations at several sites, which were closed; 107 patients from 7 sites were removed from the efficacy population without explanation in the study report.",
+          findings: [
+            { domain: "co", cat: "co-oversight", sev: "critical", text: "Critical and major GCP deviations at several sites led to site closure and exclusion of their patients from the efficacy population.", ref: "ICH E6 5.20" },
+            { domain: "dm", cat: "dm-report", sev: "major", text: "The study report gave no explanation of the audit findings or of why 107 patients' data were excluded.", ref: "ICH E3" }
+          ] },
+        { id: "mhra-foi-21-1162-roche-2020", title: "MHRA FOI 21/1162 — closed GCP inspections with major or critical findings (Roche, Jan 2020)", url: "https://assets.publishing.service.gov.uk/media/628b689de90e071f653a4915/FOI_21-1162-2.pdf", type: "MHRA GCP inspection (FOI disclosure)", publishedAt: "2021-11-24", period: "Inspection Jan 2020", scope: "Roche (UK sponsor organisation)", flag: "Limited detail", flagNote: "MHRA lists the inspection but does not disclose the findings.",
+          summary: "MHRA listed this Roche GCP inspection among closed inspections (Jan 2018 – Apr 2021) with major or critical findings.",
+          findings: [
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "The inspection produced at least one major or critical finding (content and grade not disclosed).", ref: "UK SI 2004/1031" }
+          ] },
+        { id: "fda-wl-hoppers-genentech-mv40618-2023", title: "FDA Warning Letter — Melanie M. Hoppers, M.D. (inspection covered Genentech protocol MV40618, baloxavir)", url: "https://www.fda.gov/inspections-compliance-enforcement-and-criminal-investigations/warning-letters/melanie-m-hoppers-mdphysicians-quality-care-671684-11082023", type: "FDA BIMO clinical investigator inspection (Warning Letter)", publishedAt: "2023-11-08", period: "Inspection Dec 2022", scope: "Investigator site running Genentech study MV40618 and a second protocol with a redacted sponsor", flag: "Indirect", flagNote: "Genentech's study was inspected, but the cited violations are tied to the co-inspected redacted protocol.",
+          summary: "FDA cited the investigator for randomising and dosing six subjects without lab-confirmed eligibility and for inadequate oversight of a coordinator.",
+          findings: [
+            { domain: "co", cat: "co-protocol", sev: "major", text: "Six subjects were randomised and dosed without the protocol-required lab-confirmed eligibility test.", ref: "21 CFR 312.60" },
+            { domain: "co", cat: "co-oversight", sev: "major", text: "The investigator did not adequately supervise delegated staff, and the corrective plan did not show how oversight would be ensured.", ref: "21 CFR 312.60" }
+          ] },
+        { id: "hc-gcp-roche-288752-2025", title: "Health Canada GCP report card — Hoffmann-La Roche Ltd, RO7790121 Phase 3 (control no. 288752)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=2c24f2bf-caaf-4ad8-9c12-ba6b58064096", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2025-11", period: "Nov 2025", scope: "Phase 3 trial sponsored by Hoffmann-La Roche Ltd", flagNote: "Health Canada does not grade individual observations; 'minor' reflects the overall Compliant rating.",
+          summary: "Rated Compliant with 6 observations on drug handling, quality systems, communication, training and record errors.",
+          findings: [
+            { domain: "co", cat: "co-ip", sev: "minor", text: "No systems to ensure the drug was properly handled and stored.", ref: "C.05.010" },
+            { domain: "co", cat: "co-qms", sev: "minor", text: "Quality systems and staff-training procedures were not implemented.", ref: "C.05.010" },
+            { domain: "co", cat: "co-sponsor", sev: "minor", text: "Required study information was not communicated to or reviewed by study personnel in time.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-source", sev: "minor", text: "Trial records had errors or missing information.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-roche-239857-tiragolumab-2022", title: "Health Canada GCP report card — Hoffmann-La Roche Ltd, tiragolumab + atezolizumab Phase 3 (control no. 239857)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=e3a63316-4cdf-4397-bcdf-5397e4c7d07b", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2022-12", period: "Dec 2022", scope: "Phase 3 tiragolumab trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 6 observations on deviations, delegation, AE reporting, monitoring and source-to-CRF accuracy.",
+          findings: [
+            { domain: "co", cat: "co-protocol", sev: "minor", text: "No systems to ensure protocol deviations were documented and reported.", ref: "C.05.010" },
+            { domain: "co", cat: "co-oversight", sev: "minor", text: "No systems to ensure tasks were appropriately delegated.", ref: "C.05.010" },
+            { domain: "co", cat: "co-safety", sev: "minor", text: "No systems to ensure adverse events were documented and reported.", ref: "C.05.010" },
+            { domain: "co", cat: "co-sponsor", sev: "minor", text: "No systems to ensure adequate monitoring.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-crf", sev: "minor", text: "Transcription from source documents to case reports was not ensured to be accurate and complete.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-roche-239945-faricimab-2022", title: "Health Canada GCP report card — Hoffmann-La Roche Ltd, faricimab Phase 3 (control no. 239945)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=cde6fe8d-13e4-4b7e-8548-731c79ac0ca7", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2022-01", period: "Jan 2022", scope: "Phase 3 faricimab trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 5 observations, including non-adherence to protocol and medical decisions not supervised by the qualified investigator.",
+          findings: [
+            { domain: "co", cat: "co-protocol", sev: "minor", text: "The trial was not conducted according to the protocol.", ref: "C.05.010" },
+            { domain: "co", cat: "co-oversight", sev: "minor", text: "Medical care and decisions were not under the supervision of the qualified investigator.", ref: "C.05.010" },
+            { domain: "co", cat: "co-tmf", sev: "minor", text: "Delegation records and complete GCP records were not kept.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-roche-216415-gantenerumab-2021", title: "Health Canada GCP report card — Hoffmann-La Roche Ltd, gantenerumab Phase 3 (control no. 216415)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=c0163a96-226f-48f3-856a-bf6cabca6e6c", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2021-11", period: "Nov 2021", scope: "Phase 3 gantenerumab trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 3 observations on informed consent and staff GCP training.",
+          findings: [
+            { domain: "co", cat: "co-consent", sev: "minor", text: "No systems to ensure participants were properly consented.", ref: "C.05.010" },
+            { domain: "co", cat: "co-qms", sev: "minor", text: "No systems to train staff on GCP and the Food and Drug Regulations.", ref: "C.05.010" }
           ] }
       ]
     },
@@ -813,6 +958,96 @@ window.DATA = {
           findings: [
             { domain: "co", cat: "co-ip", sev: "major", text: "IP stored outside the required temperature was still dispensed to subjects.", ref: "21 CFR 312.50" },
             { domain: "co", cat: "co-sponsor", sev: "major", text: "Monitoring visits did not identify the IP temperature excursions.", ref: "21 CFR 312.50" }
+          ] },
+        { id: "ema-epar-adakveo-gcp-inspection-2020", title: "Adakveo (crizanlizumab) EPAR — CHMP-requested GCP inspection of pivotal study A2201 (SUSTAIN)", url: "https://www.ema.europa.eu/en/documents/assessment-report/adakveo-epar-public-assessment-report_en.pdf", type: "EMA EPAR (CHMP-requested GCP inspection)", publishedAt: "2020", period: "Inspection Nov – Dec 2019; outcome Feb 2020", scope: "Investigator sites in Jamaica and the USA, and the sponsor in the USA",
+          summary: "Critical findings on central adjudication of pain crises led inspectors to recommend against accepting the adjudicated primary-endpoint data; CHMP relied on investigator-reported events instead.",
+          findings: [
+            { domain: "dm", cat: "dm-integrity", sev: "critical", text: "Critical findings in the endpoint adjudication process and its documentation; inspectors did not recommend accepting the adjudicated primary-endpoint data.", ref: "ICH E6 5.5" },
+            { domain: "co", cat: "co-protocol", sev: "critical", text: "A '2-week rule' for counting pain crises was not predefined in the protocol, and its consistent application could not be confirmed.", ref: "ICH E6 6; ICH E9" }
+          ] },
+        { id: "ema-epar-piqray-gcp-inspection-2020", title: "Piqray (alpelisib) EPAR — CHMP-requested GCP inspection of SOLAR-1", url: "https://www.ema.europa.eu/en/documents/assessment-report/piqray-epar-public-assessment-report_en.pdf", type: "EMA EPAR (CHMP-requested GCP inspection)", publishedAt: "2020", period: "Inspection May – Sep 2019", scope: "Four investigator sites (Chile, Peru, Japan) and a US laboratory", flag: "Pre-2020 data", flagNote: "The inspection took place in 2019; the EPAR was published in 2020.",
+          summary: "Critical deficiencies at one Chilean site led inspectors to recommend excluding its data; re-analysis without its four patients gave consistent results.",
+          findings: [
+            { domain: "co", cat: "co-oversight", sev: "critical", text: "Critical deficiencies at one investigator site in Chile (nature not disclosed); its four patients' data were excluded.", ref: "ICH E6 4" }
+          ] },
+        { id: "novartis-esg-2025-inspections", title: "Novartis ESG Data Summary 2025 — health authority inspections (clinical trials and pharmacovigilance)", url: "https://www.novartis.com/sites/novartis_com/files/novartis-esg-data-summary-2025.pdf", type: "Company disclosure (inspection metrics)", publishedAt: "2026-09", period: "2024–2025", scope: "Health authority inspections of Novartis, clinical trial and PV subset", flag: "Company self-disclosure", flagNote: "Web table: https://www.novartis.com/about/quality/audit-program-and-regulatory-inspections. No GCP finding grades are published.",
+          summary: "21 clinical-trial or PV inspections in 2024 (2 led to remediation or regulatory action) and 23 in 2025 (1 did).",
+          findings: [
+            { domain: "co", cat: "co-qms", sev: "trend", text: "2 of 21 (2024) and 1 of 23 (2025) clinical-trial or PV inspections led to remediation or regulatory/administrative action.", ref: "" }
+          ] },
+        { id: "mhra-foi-21-1162-novartis-2020", title: "MHRA FOI 21/1162 — closed GCP inspections with major or critical findings (Novartis Pharmaceuticals UK, Sep 2020)", url: "https://assets.publishing.service.gov.uk/media/628b689de90e071f653a4915/FOI_21-1162-2.pdf", type: "MHRA GCP inspection (FOI disclosure)", publishedAt: "2021-11-24", period: "Inspection Sep 2020", scope: "Novartis Pharmaceuticals UK Ltd (sponsor organisation)", flag: "Limited detail", flagNote: "MHRA lists the inspection but does not disclose the findings.",
+          summary: "MHRA listed this Novartis UK GCP inspection among closed inspections (Jan 2018 – Apr 2021) with major or critical findings.",
+          findings: [
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "The inspection produced at least one major or critical finding (content and grade not disclosed).", ref: "UK SI 2004/1031" }
+          ] },
+        { id: "hc-gcp-novartis-272168-remibrutinib-2025", title: "Health Canada GCP report card — Novartis Pharmaceuticals Canada, remibrutinib/omalizumab Phase 3 (control no. 272168)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=9eea5993-2e70-460a-a896-a72ba83f4dab", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2025-12", period: "Dec 2025", scope: "Phase 3 remibrutinib trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 5 observations on quality systems, staff qualification, communication and record errors.",
+          findings: [
+            { domain: "co", cat: "co-qms", sev: "minor", text: "Quality systems not implemented, and not all staff had the training and experience for their tasks.", ref: "C.05.010" },
+            { domain: "co", cat: "co-sponsor", sev: "minor", text: "Required study information was not communicated to or reviewed by personnel in time.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-source", sev: "minor", text: "Trial records had errors or missing information.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-novartis-256429-inclisiran-2024-09", title: "Health Canada GCP report card — Novartis Pharmaceuticals Canada, inclisiran Phase 3 (control no. 256429, Sep 2024)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=97f01b52-1ee0-4c00-904d-d9d88b5e5134", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2024-09", period: "Sep 2024", scope: "Phase 3 inclisiran trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 12 observations, including unvalidated electronic systems, equipment calibration, monitoring, AE reporting, delegation, consent and record errors.",
+          findings: [
+            { domain: "dm", cat: "dm-csv", sev: "minor", text: "No systems to ensure electronic systems were validated.", ref: "C.05.010" },
+            { domain: "co", cat: "co-qms", sev: "minor", text: "Equipment was not maintained and calibrated, and quality-system gaps were found (4 observations).", ref: "C.05.010" },
+            { domain: "co", cat: "co-sponsor", sev: "minor", text: "No systems to ensure adequate monitoring.", ref: "C.05.010" },
+            { domain: "co", cat: "co-safety", sev: "minor", text: "No systems to ensure adverse events were documented and reported.", ref: "C.05.010" },
+            { domain: "co", cat: "co-oversight", sev: "minor", text: "Delegation and staff qualification were not ensured.", ref: "C.05.010" },
+            { domain: "co", cat: "co-consent", sev: "minor", text: "No systems to ensure participants were properly consented.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-source", sev: "minor", text: "Trial records had errors or missing information.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-novartis-256429-inclisiran-2024-01", title: "Health Canada GCP report card — Novartis Pharmaceuticals Canada, inclisiran Phase 3 (control no. 256429, Jan 2024)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=9519f312-b5cf-441c-840e-489562112a03", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2024-01", period: "Jan 2024", scope: "Phase 3 inclisiran trial (earlier inspection)", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 7 observations on staff qualification, delegation, consent, deviations, record errors and source-to-CRF transcription.",
+          findings: [
+            { domain: "co", cat: "co-oversight", sev: "minor", text: "Delegation and staff qualification were not ensured.", ref: "C.05.010" },
+            { domain: "co", cat: "co-consent", sev: "minor", text: "No systems to ensure participants were properly consented.", ref: "C.05.010" },
+            { domain: "co", cat: "co-protocol", sev: "minor", text: "No systems to ensure protocol deviations were documented and reported.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-crf", sev: "minor", text: "Transcription from source documents to case reports was not ensured to be accurate and complete.", ref: "C.05.012" }
+          ] },
+        { id: "hc-gcp-novartis-216929-ligelizumab-2020", title: "Health Canada GCP report card — Novartis Pharmaceuticals Canada, ligelizumab (QGE031) Phase 3 (control no. 216929)", url: "https://www.drug-inspections.canada.ca/gcp/fullReportCard-en.html?lang=en&gcpid=bd2f5d8a-8e30-4482-8d31-4d93fe832a58", type: "Health Canada clinical trial inspection (report card)", publishedAt: "2020-01", period: "Jan 2020", scope: "Phase 3 ligelizumab trial", flagNote: "Health Canada does not grade individual observations; overall rating Compliant.",
+          summary: "Rated Compliant with 8 observations, including unvalidated electronic systems, no 25-year record retention, equipment calibration and staff qualification.",
+          findings: [
+            { domain: "dm", cat: "dm-csv", sev: "minor", text: "No systems to ensure electronic systems were validated.", ref: "C.05.010" },
+            { domain: "co", cat: "co-tmf", sev: "minor", text: "No provision to keep all clinical trial records for 25 years.", ref: "C.05.012" },
+            { domain: "co", cat: "co-qms", sev: "minor", text: "Quality systems, equipment calibration and staff training were deficient.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-source", sev: "minor", text: "Trial records had errors or missing information.", ref: "C.05.012" }
+          ] }
+      ]
+    },
+
+    {
+      id: "csl-vifor", name: "CSL Vifor", short: "CSL Vifor", logoText: "CSLV", domain: "cslvifor.com",
+      category: "mnc",
+      intro: "St. Gallen, Switzerland-headquartered specialty pharma (part of CSL since 2022); EU authorisation holder for Tavneos (avacopan), licensed from ChemoCentryx (now Amgen), which sponsored the pivotal ADVOCATE trial.",
+      url: "https://www.cslvifor.com/",
+      sources: [
+        { id: "ema-art20-tavneos-advocate-2026", title: "Tavneos (avacopan) — EMA Article 20 review: serious GCP breach in the ADVOCATE trial; EU authorisation revoked", url: "https://www.ema.europa.eu/en/documents/referral/tavneos-article-20-procedure-public-assessment-report_en.pdf", type: "EMA Article 20 referral (GCP breach / data integrity)", publishedAt: "2026-06-26", period: "Database locks Nov 2019; CHMP opinion Jun 2026; EC revocation Aug 2026", scope: "Pivotal Phase 3 ADVOCATE study (sponsor ChemoCentryx, with a CRO and adjudication committee); EU MAH in the CSL Vifor group", flag: "Licensed product", flagNote: "The trial sponsor was ChemoCentryx, not a Swiss company. EMA news: https://www.ema.europa.eu/en/news/ema-recommends-revoking-marketing-authorisation-tavneos",
+          summary: "After the first lock and unblinding, unblinded sponsor staff re-ran analyses and had 9 patients re-adjudicated before a second lock, turning a non-significant week-52 result significant without disclosure. CHMP found a serious GCP breach and the data 'incorrect and misleading'.",
+          findings: [
+            { domain: "dm", cat: "dm-lock", sev: "critical", text: "After database lock and unblinding, unblinded sponsor staff re-ran superiority tests on modified data and requested re-adjudication of 9 patients before a second lock.", ref: "ICH E6; ICH E9" },
+            { domain: "dm", cat: "dm-report", sev: "critical", text: "The first lock, unblinding and re-adjudications were left out of the study report, which claimed the protocol unblinding process had been followed.", ref: "ICH E3; ICH E6 5.22" },
+            { domain: "co", cat: "co-ip", sev: "critical", text: "Re-adjudication was done by the committee chair alone after verbal discussions with an unblinded sponsor representative, so blinding could not be guaranteed.", ref: "ICH E6 5.5" },
+            { domain: "co", cat: "co-protocol", sev: "major", text: "Rules on permitted concomitant glucocorticoids, which affected responder status, were changed late in the SAP only, without a protocol amendment.", ref: "ICH E6 6; ICH E9" },
+            { domain: "co", cat: "co-tmf", sev: "major", text: "The unblinded QC review and the sponsor–CRO meeting that started re-adjudication were undocumented; a post-lock change form was signed after the reanalysis.", ref: "ICH E6 8" },
+            { domain: "dm", cat: "dm-audit", sev: "major", text: "The EDC audit trail was reviewed for only 4 patients, so absence of other post-lock changes could not be verified.", ref: "ICH E6 5.5.3" },
+            { domain: "co", cat: "co-sponsor", sev: "major", text: "EU MAH staff had been copied on 2021 correspondence about the re-adjudication, yet it was not disclosed to EMA.", ref: "Regulation (EC) 726/2004 Art. 16" }
+          ] }
+      ]
+    },
+
+    {
+      id: "idorsia", name: "Idorsia Pharmaceuticals", short: "Idorsia", logoText: "IDIA", domain: "idorsia.com",
+      category: "mnc",
+      intro: "Allschwil, Switzerland-headquartered biopharma spun out of Actelion in 2017; products include daridorexant (Quviviq) and aprocitentan.",
+      url: "https://www.idorsia.com/",
+      sources: [
+        { id: "hc-gcp-idorsia-214430-daridorexant-2022", title: "Health Canada GCP initial deficiencies report — Idorsia, daridorexant Phase 3 (control no. 214430)", url: "https://www.drug-inspections.canada.ca/gcp/initialReportCard-en.html?lang=en&gcpid=15739182-f62a-439a-9f32-852303217086", type: "Health Canada clinical trial inspection (initial deficiencies report)", publishedAt: "2022-05", period: "May 2022", scope: "Phase 3 daridorexant trial sponsored by Idorsia", flag: "Preliminary", flagNote: "Initial deficiencies report only; no final rating published.",
+          summary: "The initial report lists 2 deficiency areas: GCP conduct, and completeness or accuracy of records.",
+          findings: [
+            { domain: "co", cat: "co-qms", sev: "minor", text: "Deficiencies in conducting the trial in keeping with GCP.", ref: "C.05.010" },
+            { domain: "dm", cat: "dm-source", sev: "minor", text: "Deficiencies in the completeness, accuracy or availability of required records.", ref: "C.05.012" }
           ] }
       ]
     },

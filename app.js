@@ -23,7 +23,7 @@
 
   var state = {
     data: loadData(),
-    view: "all",            // "all" | "co" | "dm" | "compare" | orgId
+    view: "all",            // "all" | "co" | "dm" | "compare" | "summary" | orgId
     query: "",
     orgType: "all",
     sev: "all",
@@ -75,6 +75,27 @@
     size = size || 14;
     return '<svg width="' + size + '" height="' + size + '" viewBox="0 0 24 24" fill="none" stroke="currentColor" stroke-width="2" stroke-linecap="round" stroke-linejoin="round">' + paths + '</svg>';
   }
+  var REGION = {
+    na:     { label: "North America", color: "#0071bc", note: "FDA, Health Canada, US-headquartered pharma and North American industry bodies" },
+    eu:     { label: "Europe (EU / UK)", color: "#3949ab", note: "EMA, MHRA and Europe-headquartered pharma" },
+    ch:     { label: "Switzerland", color: "#d52b1e", note: "Swissmedic and Swiss-headquartered pharma" },
+    asia:   { label: "Asia", color: "#c47f17", note: "NMPA, PMDA, MFDS and Asia-based CROs" },
+    au:     { label: "Australia", color: "#00857c", note: "TGA" },
+    latam:  { label: "Latin America", color: "#2e7d32", note: "ANVISA" },
+    global: { label: "Global / multi-region", color: "#6b6485", note: "WHO PQ, international societies and literature" }
+  };
+  var REGION_ORDER = ["na", "eu", "ch", "asia", "au", "latam", "global"];
+  var REGION_OF = {
+    "fda": "na", "health-canada": "na", "pfizer": "na", "merck-msd": "na", "bms": "na", "lilly": "na", "amgen": "na",
+    "capra": "na", "redica": "na", "goodwin": "na", "tufts-csdd": "na",
+    "ema": "eu", "mhra": "eu", "astrazeneca": "eu",
+    "swissmedic": "ch", "roche-genentech": "ch", "novartis": "ch", "csl-vifor": "ch", "idorsia": "ch",
+    "nmpa": "asia", "pmda": "asia", "mfds": "asia", "synapse": "asia", "synchron": "asia", "panexcell": "asia",
+    "tga": "au", "anvisa": "latam",
+    "who-pq": "global", "scdm": "global", "literature": "global"
+  };
+  function regionOf(org) { return (org && (org.region || REGION_OF[org.id])) || "global"; }
+
   function categories() { return state.data.categories || []; }
   function catById(id) { return categories().find(function (c) { return c.id === id; }); }
   function catLabel(id) { var c = catById(id); return c ? c.label : id; }
@@ -184,7 +205,8 @@
       chip("nav-overview", "all", '<rect x="3" y="3" width="7" height="7" rx="1"/><rect x="14" y="3" width="7" height="7" rx="1"/><rect x="3" y="14" width="7" height="7" rx="1"/><rect x="14" y="14" width="7" height="7" rx="1"/>', "Overview") +
       chip("dom-co", "co", '<path d="M9 11l3 3L22 4"/><path d="M21 12v7a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V5a2 2 0 0 1 2-2h11"/>', "Clinical Operations findings", countDomain("co")) +
       chip("dom-dm", "dm", '<ellipse cx="12" cy="5" rx="9" ry="3"/><path d="M21 12c0 1.66-4 3-9 3s-9-1.34-9-3"/><path d="M3 5v14c0 1.66 4 3 9 3s9-1.34 9-3V5"/>', "Data Management findings", countDomain("dm")) +
-      chip("compare", "compare", '<path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>', "Cross-comparison");
+      chip("compare", "compare", '<path d="M9 3v18M15 3v18M3 9h18M3 15h18"/>', "Cross-comparison") +
+      chip("summary", "summary", '<circle cx="12" cy="12" r="9"/><path d="M3 12h18M12 3a14 14 0 0 1 0 18M12 3a14 14 0 0 0 0 18"/>', "Summary");
 
     var groups = {};
     orgs.forEach(function (o) { (groups[o.category] = groups[o.category] || []).push(o); });
@@ -255,6 +277,7 @@
     if (v === "all") renderOverview();
     else if (v === "co" || v === "dm") renderDomain(v);
     else if (v === "compare") renderCompare();
+    else if (v === "summary") renderSummary();
     else renderOrgView(v);
   }
 
@@ -646,6 +669,109 @@
     content.querySelectorAll("[data-edit]").forEach(function (el) {
       el.addEventListener("click", function () { var p = el.getAttribute("data-edit").split("::"); openEdit(p[0], p[1]); });
     });
+  }
+
+  // ---------- Summary by region ----------
+  function pct(n, d) { return d ? Math.round(n / d * 1000) / 10 : 0; }
+
+  function smCatRows(list) {
+    var by = {};
+    list.forEach(function (x) { (by[x.f.cat] = by[x.f.cat] || []).push(x); });
+    return Object.keys(by).map(function (id) {
+      var items = by[id];
+      var orgs = {};
+      items.forEach(function (x) { orgs[x.org.id] = 1; });
+      return { c: catById(id) || { id: id, label: id, domain: id.slice(0, 2) }, items: items, n: items.length, orgs: Object.keys(orgs).length };
+    }).sort(function (a, b) { return b.n - a.n || b.orgs - a.orgs; });
+  }
+
+  function smBlock(title, sub, color, list, limit, showSev) {
+    var rows = smCatRows(list);
+    var total = list.length;
+    var shown = limit ? rows.slice(0, limit) : rows;
+    var max = Math.max.apply(null, rows.map(function (r) { return r.n; }).concat([1]));
+    var body = !rows.length ? '<div class="sm-empty">No findings in this group for this region.</div>' :
+      shown.map(function (r) {
+        var D = DOMAIN[r.c.domain] || DOMAIN.co;
+        return '<details class="sm-cat"><summary>' +
+          '<span class="hs-dom" style="background:' + D.soft + ';color:' + D.color + '">' + (r.c.domain === "dm" ? "DM" : "CO") + '</span>' +
+          '<span class="sm-name" title="' + esc(r.c.label + ' \u2014 ' + r.orgs + ' organization(s)') + '">' + esc(r.c.label) + '</span>' +
+          '<span class="hs-track"><i style="width:' + (r.n / max * 100) + '%;background:' + color + '"></i></span>' +
+          '<span class="sm-n">' + r.n + '</span>' +
+          '<span class="sm-pct">' + pct(r.n, total) + '%</span>' +
+        '</summary><ul class="sm-items">' + r.items.map(function (x) {
+          return '<li>' + (showSev ? sevBadge(x.f.sev) + ' ' : '') + '<b>' + esc(x.org.short || x.org.name) + ':</b> ' + esc(x.f.text) +
+            ' <a href="' + esc(x.src.url) + '" target="_blank" rel="noopener" title="' + esc(x.src.title) + '">source \u2197</a></li>';
+        }).join("") + '</ul></details>';
+      }).join("") +
+      (limit && rows.length > limit ? '<div class="sm-more">+ ' + (rows.length - limit) + ' more categories with fewer findings</div>' : '');
+    return '<div class="sm-block" style="--bc:' + color + '">' +
+      '<div class="sm-block-head"><h4>' + title + '</h4><span>' + sub + '</span></div>' +
+      (rows.length ? '<div class="sm-cols"><span></span><span>Category</span><span></span><span>n</span><span>Share</span></div>' : '') +
+      body + '</div>';
+  }
+
+  function renderSummary() {
+    var fl = allFindings();
+    var regions = REGION_ORDER.map(function (k) {
+      var orgs = (state.data.organizations || []).filter(function (o) { return regionOf(o) === k; });
+      var list = fl.filter(function (x) { return regionOf(x.org) === k; });
+      var crit = list.filter(function (x) { return x.f.sev === "critical"; });
+      var maj = list.filter(function (x) { return x.f.sev === "major"; });
+      var other = list.filter(function (x) { return x.f.sev === "minor" || x.f.sev === "trend"; });
+      var graded = list.length - list.filter(function (x) { return x.f.sev === "trend"; }).length;
+      var flagged = {};
+      list.forEach(function (x) { if (x.src.flag && /Allegation|Media|Secondary|Indirect|Preliminary|Limited/i.test(x.src.flag)) flagged[x.src.id] = 1; });
+      return { k: k, R: REGION[k], orgs: orgs, list: list, crit: crit, maj: maj, other: other, graded: graded, flagged: Object.keys(flagged).length,
+        topCrit: smCatRows(crit)[0], topMaj: smCatRows(maj)[0] };
+    }).filter(function (r) { return r.list.length; });
+
+    var table = '<div class="panel"><h3>Regions at a glance</h3><div class="sm-table-wrap"><table class="sm-table"><thead><tr>' +
+      '<th>Region</th><th>Orgs</th><th>Findings</th><th>Critical</th><th>Critical rate</th><th>Major</th><th>Major rate</th><th>Top critical category</th><th>Top major category</th></tr></thead><tbody>' +
+      regions.map(function (r) {
+        return '<tr><td><a class="sm-jump" data-smjump="' + r.k + '" style="--rc:' + r.R.color + '"><i></i>' + esc(r.R.label) + '</a></td>' +
+          '<td>' + r.orgs.length + '</td><td>' + r.list.length + '</td>' +
+          '<td class="sm-c">' + r.crit.length + '</td><td><span class="sm-rate" style="--sc:' + SEVERITY.critical.color + '">' + pct(r.crit.length, r.graded) + '%</span></td>' +
+          '<td class="sm-m">' + r.maj.length + '</td><td><span class="sm-rate" style="--sc:' + SEVERITY.major.color + '">' + pct(r.maj.length, r.graded) + '%</span></td>' +
+          '<td>' + (r.topCrit ? esc(r.topCrit.c.label) + ' <small>(' + r.topCrit.n + ')</small>' : '\u2014') + '</td>' +
+          '<td>' + (r.topMaj ? esc(r.topMaj.c.label) + ' <small>(' + r.topMaj.n + ')</small>' : '\u2014') + '</td></tr>';
+      }).join("") + '</tbody></table></div>' +
+      '<div class="caption">Rate = share of the region\u2019s graded findings (critical + major + minor; trend statistics excluded). Click a region to jump to its section.</div></div>';
+
+    var sections = regions.map(function (r) {
+      return '<section class="panel sm-region" id="sm-' + r.k + '" style="--rc:' + r.R.color + '">' +
+        '<div class="sm-rhead"><div><h3>' + esc(r.R.label) + '</h3><p>' + esc(r.R.note) + '</p></div>' +
+          '<div class="sm-stats">' +
+            '<span><b>' + r.list.length + '</b> findings</span>' +
+            '<span style="--sc:' + SEVERITY.critical.color + '"><b>' + r.crit.length + '</b> critical \u00B7 ' + pct(r.crit.length, r.graded) + '%</span>' +
+            '<span style="--sc:' + SEVERITY.major.color + '"><b>' + r.maj.length + '</b> major \u00B7 ' + pct(r.maj.length, r.graded) + '%</span>' +
+            '<span><b>' + r.other.length + '</b> minor / trend</span>' +
+          '</div></div>' +
+        '<div class="sm-orgs">' + r.orgs.map(function (o) {
+          return '<button class="nav-chip nav-org" data-go="' + esc(o.id) + '" style="--brand:' + (orgType(o) || {}).color + '">' + navLogo(o) + '<span>' + esc(o.short || o.name) + '</span></button>';
+        }).join("") + '</div>' +
+        '<div class="sm-grid">' +
+          smBlock("1. Critical findings", r.crit.length + ' findings \u00B7 share = % of the region\u2019s critical findings', SEVERITY.critical.color, r.crit, 0, false) +
+          smBlock("2. Major findings", r.maj.length + ' findings \u00B7 share = % of the region\u2019s major findings', SEVERITY.major.color, r.maj, 8, false) +
+          smBlock("3. Other issues to watch", r.other.length + ' minor findings and trend statistics' + (r.flagged ? ' \u00B7 ' + r.flagged + ' source(s) flagged as allegation, media, secondary or preliminary' : ''), "#7A00E6", r.other, 6, true) +
+        '</div></section>';
+    }).join("");
+
+    content.innerHTML =
+      '<div class="ov-hero sm-hero"><h2>Summary by region</h2>' +
+        '<p>Critical and major findings, and other points to watch, grouped by region. Each organization is assigned to the region of its jurisdiction (regulators) or headquarters (companies, CROs, industry bodies); Switzerland is shown separately. Click any category to see the underlying findings and sources.</p></div>' +
+      '<div class="sm-chips">' + regions.map(function (r) {
+        return '<button class="sm-chip" data-smjump="' + r.k + '" style="--rc:' + r.R.color + '">' + esc(r.R.label) + '<em>' + r.crit.length + ' C</em></button>';
+      }).join("") + '</div>' +
+      table + sections;
+
+    content.querySelectorAll("[data-smjump]").forEach(function (el) {
+      el.addEventListener("click", function () {
+        var t = document.getElementById("sm-" + el.getAttribute("data-smjump"));
+        if (t) t.scrollIntoView({ behavior: "smooth", block: "start" });
+      });
+    });
+    bindCommon();
   }
 
   // ---------- Cross-comparison ----------
